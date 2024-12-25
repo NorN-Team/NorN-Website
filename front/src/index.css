@@ -1,0 +1,30 @@
+/* Глобальные стили */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #eaf7ea; /* Светло-зелёный фон */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #2f4f2f; /* Тёмно-зелёный цвет для заголовков */
+}
+
+a {
+  color: #4caf50; /* Ярко-зелёный для ссылок */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+ul {
+  list-style: none;
+}

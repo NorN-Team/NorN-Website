@@ -1,0 +1,33 @@
+/* Стили для чекбоксов */
+input[type="checkbox"] {
+    appearance: none; /* Убираем стандартный стиль чекбокса */
+    -webkit-appearance: none; /* Для Safari */
+    -moz-appearance: none; /* Для Firefox */
+    width: 15px; /* Размер чекбокса */
+    height: 15px; /* Размер чекбокса */
+    border: 1px solid #4caf50; /* Цвет рамки чекбокса */
+    border-radius: 2px; /* Скругляем углы */
+    position: relative; /* Для размещения галочки */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Плавный переход */
+    margin-right: 10px; /* Отступ между чекбоксом и текстом */
+  }
+  
+  /* Изменение состояния чекбокса при его выборе */
+  input[type="checkbox"]:checked {
+    background-color: #4caf50; /* Зелёный фон при чекнутом состоянии */
+    border-color: #4caf50; /* Зелёная рамка при чекнутом состоянии */
+  }
+  
+  /* Псевдоэлемент для создания галочки */
+  input[type="checkbox"]:checked::after {
+    content: ''; /* Создаём пустой псевдоэлемент */
+    position: absolute;
+    top: 1px; /* Позиция галочки */
+    left: 4px; /* Позиция галочки */
+    width: 3px; /* Ширина галочки */
+    height: 6px; /* Высота галочки */
+    border: solid white; /* Белая галочка */
+    border-width: 0 3px 3px 0; /* Формируем галочку */
+    transform: rotate(45deg); /* Поворот для создания формы галочки */
+  }
