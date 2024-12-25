@@ -9,6 +9,8 @@ services:
       - ./frontend:/app
       - /app/node_modules
     command: yarn start
+    environment:
+      - BROWSER=none
     depends_on:
       - backend
 
