@@ -1,11 +1,39 @@
 from pydantic import BaseModel
 from typing import List
 
+from sqlalchemy import Column, Integer, String, Uuid, ForeignKey
+from sqlalchemy.orm import DeclarativeBase
+
+__all__ = [
+    "User",
+    "Movie",
+    "Rating"
+]
+
+class Base(DeclarativeBase):
+    pass
+
+
+class User(Base):
+    __tablename__ = "user"
+    user_id = Column(Uuid, unique=True, primary_key=True)
+    username = Column(String(32))
+    hashed_password = Column(String(128))
+   
+class Movie(Base):
+    __tablename__ = "Movie"
+
+    movie_id = Column(Uuid, unique=True, primary_key=True)
+    title = Column(String(256), unique=True, index=True)
+    year = Column(Integer)
+
+
 # Определение Pydantic-модели для фильма
 class Movie(BaseModel):
     title: str
     year: int
     genres: List[str]
+
 
 # Пример данных фильмов
 movies = [
