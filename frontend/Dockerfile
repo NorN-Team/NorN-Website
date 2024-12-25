@@ -2,7 +2,7 @@
 FROM node:20-alpine
 
 # Устанавливаем рабочую директорию
-WORKDIR /front
+WORKDIR /frontend
 
 # Копируем файлы package.json и yarn.lock
 COPY package.json yarn.lock ./

@@ -1,13 +1,12 @@
-<<<<<<< HEAD
 version: '3.8'
 services:
   frontend:
     build:
-      context: ./front
+      context: ./frontend
     ports:
       - "3000:3000"
     volumes:
-      - ./front:/app
+      - ./frontend:/app
       - /app/node_modules
     command: yarn start
     depends_on:
@@ -15,35 +14,9 @@ services:
 
   backend:
     build:
-      context: ./app
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./app:/app
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-=======
-version: "3.8"
-
-services:
-  backend:
-    build:
-      context: .
-      dockerfile: backend/Dockerfile
+      context: ./backend
     ports:
       - "8000:8000"
     volumes:
       - ./backend:/app
-    environment:
-      - ENVIRONMENT=production
-
-  frontend:
-    build:
-      context: .
-      dockerfile: frontend/Dockerfile
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./frontend:/app
-    depends_on:
-      - backend
->>>>>>> 84fb1c62425661b8987841730535038cc8fa442b
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
