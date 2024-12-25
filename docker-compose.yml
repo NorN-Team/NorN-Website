@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 version: '3.8'
 services:
   frontend:
@@ -20,3 +21,29 @@ services:
     volumes:
       - ./app:/app
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+=======
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - ENVIRONMENT=production
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - backend
+>>>>>>> 84fb1c62425661b8987841730535038cc8fa442b
