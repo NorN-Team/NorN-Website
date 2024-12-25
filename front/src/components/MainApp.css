@@ -1,0 +1,67 @@
+/* Основные стили для приложения */
+.app-container {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #eaf7ea; /* Светло-зелёный фон */
+    color: #2f4f2f; /* Тёмно-зелёный текст */
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Шапка */
+  .header {
+    background-color: #eaf7ea;; /* Ярко-зелёный */
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Основное содержимое */
+  .main-content {
+    display: flex;
+    flex: 1;
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  /* Левая колонка (фильтры) */
+  .sidebar-left {
+    width: 20%;
+    background-color: #d4edda; /* Бледно-зелёный */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Центральная колонка (результаты поиска) */
+  .results {
+    flex: 1;
+    background-color: #d4edda; /* Бледно-зелёный */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Правая колонка (рекомендации) */
+  .sidebar-right {
+    width: 25%;
+    background-color: #d4edda; /* Бледно-зелёный */
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Футер */
+  .footer {
+    background-color: #4caf50;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+  }

@@ -1,0 +1,100 @@
+.login-register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: #2f4f2f; /* Тёмно-зелёный текст */
+    font-family: 'Arial', sans-serif;
+    background-color: #eaf7ea; /* Светлый фон */
+  }
+  
+  .login-register-box {
+    background-color: #d4edda;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Тень во все стороны */
+    max-width: 400px;
+    width: 100%;
+  }
+    
+  .login-register-box h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  .login-register-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .login-register-box input {
+    padding: 10px;
+    border: 1px solid #2f4f2f;
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
+  }
+  
+  .login-register-box input:focus {
+    outline: none;
+    border-color: #2f4f2f; /* Зеленый цвет в стиле сайта */
+  }
+ 
+  .login-register-box button {
+    background-color: white; /* Зеленый цвет сайта */
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    padding: 10px 20px; /* Внутренние отступы */
+    border-radius: 4px; /* Скругленные края */
+    border: 1px solid #2f4f2f;
+    font-size: 16px; /* Размер текста */
+    cursor: pointer; /* Курсор указывает, что это кнопка */
+    transition: background-color 0.3s ease; /* Анимация при наведении */
+  }
+  
+  .login-register-box button:hover {
+    background-color: #45a049; /* Чуть темнее при наведении */
+  }
+  
+  .login-register-box button:active {
+    background-color: #3e8e41; /* Еще темнее при клике */
+  }
+  
+  .login-register-box .redirect-link {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .login-register-box .redirect-link:hover {
+    text-decoration: underline;
+  }
+  
+  .password-container {
+    display: flex;
+    flex-direction: column; /* Элементы располагаются сверху вниз */
+    align-items: flex-start; /* Выравнивание по левому краю */
+    position: relative;
+  }
+  
+  .password-container .toggle-password {
+    all: unset;
+    margin-top: 2px;
+    text-align: left !important;
+    font-size: 14px !important;
+    color: #2f4f2f !important;
+    cursor: pointer !important;
+  }
+  
+  .password-container .toggle-password:hover {
+    text-decoration: underline !important;
+    background-color: transparent !important;
+  }
+  
+  
+  
+  

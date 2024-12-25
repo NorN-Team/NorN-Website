@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  frontend:
+    build:
+      context: ./front
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./front:/app
+      - /app/node_modules
+    command: yarn start
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./app
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
