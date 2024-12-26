@@ -4,7 +4,7 @@ import "./LoginRegister.css";
 
 const Login = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
+  const [username, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -22,11 +22,13 @@ const Login = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username: email, password }),
+        body: JSON.stringify({ username, password }),
       });
 
       if (response.ok) {
-        navigate("/main"); // Перенаправление на главную страницу после успешного входа
+        const data = await response.json(); // Получаем данные из ответа сервера
+        const userId = data.user.user_id; // Предполагаем, что сервер возвращает user_id
+        navigate("/main", { state: { userId } }); // Передаём userId через state маршрутизатора
       } else {
         const errorData = await response.json();
         setErrorMessage(errorData.detail || "Ошибка входа");
@@ -48,7 +50,7 @@ const Login = () => {
           <input
             type="text"
             placeholder="Имя пользователя"
-            value={email}
+            value={username}
             onChange={(e) => setEmail(e.target.value)}
           />
           <div className="password-container">
