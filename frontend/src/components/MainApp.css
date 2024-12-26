@@ -12,10 +12,14 @@
   
   /* Шапка */
   .header {
-    background-color: #d4edda;; /* Ярко-зелёный */
-    color: white;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: #d4edda;
+    color: #2f4f2f;
+    border-radius: 8px;
+    justify-content: space-between;
     text-align: center;
-    padding: 20px;
     font-size: 24px;
     font-weight: bold;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
