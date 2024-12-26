@@ -82,8 +82,8 @@
   }
   
   .password-container .toggle-password {
-    all: unset;
-    margin-top: 2px;
+    all: unset !important;
+    margin-top: 2px !important;
     text-align: left !important;
     font-size: 14px !important;
     color: #2f4f2f !important;
@@ -95,6 +95,15 @@
     background-color: transparent !important;
   }
   
+  .input-error {
+    border: 2px solid red;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
   
   
   
