@@ -1,8 +1,8 @@
+# main.py
 from fastapi import FastAPI
-from endpoints import movies, movie_page, register, login
 from fastapi.middleware.cors import CORSMiddleware
+from endpoints import movies, movie_page, register, login
 
-# Создание экземпляра FastAPI
 app = FastAPI(
     title="Online Cinema API",
     description="API для онлайн-кинотеатра с фильтрацией фильмов по жанрам, годам и названию.",
@@ -11,7 +11,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Или укажите конкретный адрес фронтенда, например, ["http://localhost:3000"]
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -23,12 +23,10 @@ app.include_router(movie_page.router, tags=["Movies"])
 app.include_router(register.router, prefix="/auth", tags=["Auth"])
 app.include_router(login.router, prefix="/auth", tags=["Auth"])
 
-# Пример корневого эндпоинта
 @app.get("/", tags=["Root"])
 def read_root():
     return {"message": "Добро пожаловать в API онлайн-кинотеатра!"}
 
-# Запуск приложения для локального тестирования
 if __name__ == "__main__":
-    import uvicorn # type: ignore
+    import uvicorn
     uvicorn.run(app, host="127.0.0.1", port=8000)

@@ -1,22 +1,17 @@
-from fastapi import FastAPI, APIRouter, HTTPException
-from pydantic import BaseModel
-from models.user import User, users  # Импортируем класс User
-from typing import List
+# login.py
+from fastapi import FastAPI, APIRouter, HTTPException, Depends
+from sqlalchemy.orm import Session
+from models.user import User as UserModel
+from models.user import LoginData, get_db
 
 router = APIRouter()
 
-# Пример массива пользователей
-
-class LoginData(BaseModel):
-    username: str
-    password: str
-
 @router.post("/login")
-async def login(data: LoginData):
-    # Проверяем пользователя в списке users
-    for user in users:
-        if user["username"] == data.username and user["password"] == data.password:
-            return {"message": "Успешный вход"}
+async def login(data: LoginData, db: Session = Depends(get_db)):
+    # Проверяем пользователя в базе данных
+    db_user = db.query(UserModel).filter(UserModel.username == data.username, UserModel.password == data.password).first()
+    if db_user:
+        return {"message": "Успешный вход"}
     raise HTTPException(status_code=401, detail="Неверное имя пользователя или пароль")
 
 app = FastAPI()

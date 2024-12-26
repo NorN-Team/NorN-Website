@@ -1,20 +1,18 @@
-from fastapi import FastAPI, APIRouter, HTTPException
-from models.movie_structure import Movie, movies  # Убедитесь, что структура `movies` существует
+# movie_page.py
+from fastapi import FastAPI, APIRouter, HTTPException, Depends
+from sqlalchemy.orm import Session
+from models.movie_structure import Movie as MovieModel
+from models.movie_structure import Movie
+from models.user import get_db
 
 router = APIRouter()
 
-@router.get("/movie_page/{movie_id}", response_model=Movie)  # Измените маршрут на /movies/{movie_id}
-async def get_movie(movie_id: int):
-    """
-    Эндпоинт для получения информации о фильме по его ID.
-    """
-    # Найти фильм по ID
-    for movie in movies:
-        if movie.id == movie_id:
-            return movie
-
-    # Если фильм не найден, вернуть 404
-    raise HTTPException(status_code=404, detail="Фильм не найден")
+@router.get("/movie_page/{movie_id}", response_model=Movie)
+async def get_movie(movie_id: int, db: Session = Depends(get_db)):
+    db_movie = db.query(MovieModel).filter(MovieModel.id == movie_id).first()
+    if db_movie is None:
+        raise HTTPException(status_code=404, detail="Фильм не найден")
+    return db_movie
 
 app = FastAPI()
 
