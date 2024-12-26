@@ -1,0 +1,140 @@
+.filters-container {
+  padding: 10px;
+  border-right: 1px solid #ddd;
+  font-family: Arial, sans-serif;
+}
+
+.filter-title {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-title label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.filter-title input {
+  width: 100%;
+  margin-top: 5px;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #4caf50;
+  font-size: 14px;
+}
+
+.filter-year {
+  margin-bottom: 20px;
+}
+
+.filter-year label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.filter-year input[type="range"] {
+  width: 100%;
+  appearance: none;
+  background: #d4edda;
+  height: 4px;
+  border-radius: 2px;
+  outline: none;
+}
+
+.filter-year input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #4caf50;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.filter-year input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #4caf50;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.filter-year input[type="range"]::-ms-thumb {
+  width: 16px;
+  height: 16px;
+  background: #4caf50;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.filter-genres {
+  list-style-type: none;
+  padding: 0;
+}
+
+.filter-genres li {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+/* Стили для чекбоксов */
+.filter-genres input[type="checkbox"] {
+  appearance: none !important; /* Убираем стандартный стиль чекбокса */
+  -webkit-appearance: none !important; /* Для Safari */
+  -moz-appearance: none !important; /* Для Firefox */
+  width: 15px !important; /* Размер чекбокса */
+  height: 15px !important; /* Размер чекбокса */
+  border: 1px solid #2f4f2f !important; /* Цвет рамки чекбокса */
+  border-radius: 2px !important; /* Скругляем углы */
+  position: relative !important; /* Для размещения галочки */
+  cursor: pointer !important;
+  transition: all 0.3s ease !important; /* Плавный переход */
+  margin-right: 10px !important; /* Отступ между чекбоксом и текстом */
+  background-color: white !important; /* Цвет фона чекбокса */
+}
+
+/* Изменение состояния чекбокса при его выборе */
+.filter-genres input[type="checkbox"]:checked {
+  background-color: #4caf50 !important; /* Зелёный фон при чекнутом состоянии */
+  border-color: #4caf50 !important; /* Зелёная рамка при чекнутом состоянии */
+}
+
+/* Псевдоэлемент для создания галочки */
+.filter-genres input[type="checkbox"]:checked::after {
+  content: ''; /* Создаём пустой псевдоэлемент */
+  position: absolute;
+  top: 1px; /* Позиция галочки */
+  left: 4px; /* Позиция галочки */
+  width: 3px; /* Ширина галочки */
+  height: 6px; /* Высота галочки */
+  border: solid white; /* Белая галочка */
+  border-width: 0 3px 3px 0; /* Формируем галочку */
+  transform: rotate(45deg); /* Поворот для создания формы галочки */
+}
+
+/* Для всей формы, чтобы точно применялись все стили */
+.filter-genres input[type="checkbox"]:not(:checked) {
+  background-color: white !important; /* Белый фон для невыбранных чекбоксов */
+  border-color: #4caf50 !important; /* Зеленая рамка для невыбранных чекбоксов */
+}
+
+/* Стили для кнопки поиска */
+.search-button {
+  background-color: white; /* Зеленый цвет сайта */
+  border: 1px solid #ccc;
+  margin-top: 10px;
+  padding: 10px 20px; /* Внутренние отступы */
+  border-radius: 4px; /* Скругленные края */
+  border: 1px solid #4caf50;
+  font-size: 16px; /* Размер текста */
+  cursor: pointer; /* Курсор указывает, что это кнопка */
+  transition: background-color 0.3s ease; /* Анимация при наведении */
+}
+
+.search-button:hover {
+  background-color: #45a049; /* Чуть темнее при наведении */
+}
+
+.search-button:active {
+  background-color: #3e8e41; /* Еще темнее при клике */
+}
