@@ -32,7 +32,7 @@
   
   .login-register-box input {
     padding: 10px;
-    border: 1px solid #2f4f2f;
+    border: 1px solid #4caf50;
     border-radius: 4px;
     font-size: 16px;
     width: 100%;
@@ -40,7 +40,7 @@
   
   .login-register-box input:focus {
     outline: none;
-    border-color: #2f4f2f; /* Зеленый цвет в стиле сайта */
+    border-color: #4caf50; /* Зеленый цвет в стиле сайта */
   }
  
   .login-register-box button {
@@ -49,7 +49,7 @@
     margin-top: 10px;
     padding: 10px 20px; /* Внутренние отступы */
     border-radius: 4px; /* Скругленные края */
-    border: 1px solid #2f4f2f;
+    border: 1px solid #4caf50;
     font-size: 16px; /* Размер текста */
     cursor: pointer; /* Курсор указывает, что это кнопка */
     transition: background-color 0.3s ease; /* Анимация при наведении */
@@ -82,8 +82,8 @@
   }
   
   .password-container .toggle-password {
-    all: unset;
-    margin-top: 2px;
+    all: unset !important;
+    margin-top: 2px !important;
     text-align: left !important;
     font-size: 14px !important;
     color: #2f4f2f !important;
@@ -95,6 +95,15 @@
     background-color: transparent !important;
   }
   
+  .input-error {
+    border: 2px solid red;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
   
   
   

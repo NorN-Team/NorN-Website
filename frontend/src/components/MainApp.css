@@ -12,10 +12,14 @@
   
   /* Шапка */
   .header {
-    background-color: #eaf7ea;; /* Ярко-зелёный */
-    color: white;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background: #d4edda;
+    color: #2f4f2f;
+    border-radius: 8px;
+    justify-content: space-between;
     text-align: center;
-    padding: 20px;
     font-size: 24px;
     font-weight: bold;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -35,7 +39,7 @@
     background-color: #d4edda; /* Бледно-зелёный */
     padding: 10px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
   
   /* Центральная колонка (результаты поиска) */
@@ -44,7 +48,7 @@
     background-color: #d4edda; /* Бледно-зелёный */
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     text-align: center;
   }
   
@@ -54,7 +58,7 @@
     background-color: #d4edda; /* Бледно-зелёный */
     padding: 10px;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2) !important;
   }
   
   /* Футер */

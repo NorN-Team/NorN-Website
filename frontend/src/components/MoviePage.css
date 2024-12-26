@@ -1,0 +1,57 @@
+/* Основные стили для страницы фильма */
+.movie-page-container {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #eaf7ea; /* Светло-зелёный фон */
+    color: #2f4f2f; /* Тёмно-зелёный текст */
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+  }
+  
+  .movie-header {
+    background-color: #d4edda; /* Ярко-зелёный */
+    text-align: center;
+    padding: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .movie-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #d4edda; /* Бледно-зелёный */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .movie-detail-item {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  
+  .movie-genres {
+    font-weight: bold;
+  }
+  
+  .movie-description {
+    margin-top: 10px;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  
+  .loading-message,
+  .not-found-message {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 50px;
+  }
+  
