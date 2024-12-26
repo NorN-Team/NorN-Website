@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Query, APIRouter
 from typing import List, Optional
-from services.filter import filter_movies  # Убедитесь, что эта функция реализована
+from services.filter import filter  # Убедитесь, что эта функция реализована
 from models.movie_structure import Movie, movies
 
 # Создаем экземпляр APIRouter
@@ -21,7 +21,7 @@ def get_filtered_movies(
 ):
     print(f"title_substr={title_substr}, genres={genres}, start_year={start_year}, end_year={end_year}")
     year_range = (start_year, end_year) if start_year is not None and end_year is not None else None
-    return filter_movies(movies, title_substr=title_substr, genres=genres, year_range=year_range)
+    return filter(movies, title_substr=title_substr, genres=genres, year_range=year_range)
 
     """
     Эндпоинт для получения фильмов с фильтрацией по названию, жанрам и диапазону лет.
@@ -41,7 +41,4 @@ app = FastAPI()
 # Подключаем маршруты
 app.include_router(router, prefix="/movies", tags=["Movies"])
 
-# Пример запуска сервера
-if __name__ == "__main__":
-    import uvicorn  # type: ignore
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+
