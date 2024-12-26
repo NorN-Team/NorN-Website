@@ -55,3 +55,86 @@
     margin-top: 50px;
   }
   
+  .rating-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+    background-color: #d4edda; /* Бледно-зелёный */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .rating-slider {
+    width: 100%;
+    max-width: 200px; /* Максимальная ширина ползунка */
+    appearance: none;
+    background: #4caf50;
+    height: 4px;
+    border-radius: 2px;
+    outline: none;
+  }
+  
+  .rating-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #4caf50;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .rating-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: #4caf50;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .rating-slider::-ms-thumb {
+    width: 16px;
+    height: 16px;
+    background: #4caf50;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .rating-value {
+    font-size: 16px;
+    font-weight: bold;
+    color: #2f4f2f;
+  }
+  
+  .rating-button {
+    background-color: white; /* Зеленый цвет сайта */
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    max-width: 120px;
+    padding: 10px 20px; /* Внутренние отступы */
+    border-radius: 4px; /* Скругленные края */
+    border: 1px solid #4caf50;
+    font-size: 16px; /* Размер текста */
+    cursor: pointer; /* Курсор указывает, что это кнопка */
+    transition: background-color 0.3s ease; /* Анимация при наведении */
+  }
+  
+  .rating-button:hover {
+    background-color: #45a049; /* Чуть темнее при наведении */
+  }
+  
+  .rating-button:active {
+    background-color: #3e8e41; /* Еще темнее при клике */
+  }
+  
+  .success-message {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #d4edda;
+    color: #2f4f2f;
+    border-radius: 8px;
+    font-size: 14px;
+    text-align: center;
+  }
+  
