@@ -6,7 +6,9 @@ const Register = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [usernameError, setUsernameError] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
@@ -23,7 +25,7 @@ const Register = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }), // Данные отправляются как JSON
+        body: JSON.stringify({ username, email, password }), // Данные отправляются как JSON
       });
   
       if (response.ok) {
@@ -50,6 +52,13 @@ const Register = () => {
       setUsernameError(""); // Сброс ошибки
     }
 
+    if (email.length < 1) {
+      setEmailError("Имя пользователя должно содержать хотя бы 1 символ.");
+      isValid = false;
+    } else {
+      setEmailError(""); // Сброс ошибки
+    }
+
     // Проверка пароля
     if (password.length < 8) {
       setPasswordError("Пароль должен содержать не менее 8 символов.");
@@ -65,6 +74,12 @@ const Register = () => {
     setUsername(e.target.value);
     if (e.target.value.length >= 1) {
       setUsernameError(""); // Убираем ошибку при вводе валидного имени
+    }
+  };
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    if (e.target.value.length >= 1) {
+      setEmailError(""); // Убираем ошибку при вводе валидного имени
     }
   };
 
@@ -88,6 +103,14 @@ const Register = () => {
             className={usernameError ? "input-error" : ""}
           />
           {usernameError && <div className="error-message">{usernameError}</div>}
+          <input
+            type="text"
+            placeholder="Электронная почта"
+            value={email}
+            onChange={handleEmailChange}
+            className={emailError ? "input-error" : ""}
+          />
+          {emailError && <div className="error-message">{emailError}</div>}
           <div className="password-container">
             <input
               type={showPassword ? "text" : "password"}

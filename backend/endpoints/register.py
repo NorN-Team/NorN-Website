@@ -9,11 +9,13 @@ router = APIRouter()
 class RegisterData(BaseModel):
     username: str
     password: str
+    email: str
 
 @router.post("/register")
 def register_user(data: RegisterData):
     username = data.username
     password = data.password
+    email = data.email
 
     # Проверка на уникальность имени пользователя
     if any(user.username == username for user in users):
@@ -23,7 +25,7 @@ def register_user(data: RegisterData):
     new_id = 1 if not users else users[-1].user_id + 1
 
     # Создание нового пользователя
-    new_user = User(user_id=new_id, username=username, password=password)
+    new_user = User(user_id=new_id, username=username, email = email, password=password, role = "user")
     users.append(new_user)
 
     # Возвращаем сообщение и объект пользователя

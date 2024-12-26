@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import "./MoviePage.css";
 
 const MoviePage = () => {
   const { id } = useParams(); // Получаем id из URL
+  const location = useLocation(); // Получаем location для доступа к state
+  const { userId } = location.state || {}; // Извлекаем userId из state
+  const navigate = useNavigate();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [rating, setRating] = useState(3); // Значение ползунка по умолчанию
-  const [successMessage, setSuccessMessage] = useState(""); // Сообщение об успехе
+  const [rating, setRating] = useState(3);
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const turnBack = () => {
+    navigate("/main", { state: { userId } }); // Передаем userId обратно
+  };
 
   useEffect(() => {
-    // Фетчим информацию о фильме с сервера
     const fetchMovie = async () => {
       try {
         const response = await fetch(`http://127.0.0.1:8000/movie_page/${id}`);
@@ -38,7 +44,7 @@ const MoviePage = () => {
         },
         body: JSON.stringify({
           film_id: id,
-          user_id: 1, // Здесь можно использовать ID авторизованного пользователя
+          user_id: userId, // Используем userId
           rating,
         }),
       });
@@ -47,9 +53,7 @@ const MoviePage = () => {
         throw new Error("Ошибка отправки оценки");
       }
 
-      setSuccessMessage("Оценка успешно отправлена!"); // Устанавливаем сообщение об успехе
-
-      // Очищаем сообщение через 5 секунд
+      setSuccessMessage("Оценка успешно отправлена!");
       setTimeout(() => setSuccessMessage(""), 5000);
     } catch (error) {
       console.error("Ошибка:", error);
@@ -85,8 +89,11 @@ const MoviePage = () => {
         <button className="rating-button" onClick={handleRatingSubmit}>
           Оценить
         </button>
+        <button className="back-button" onClick={turnBack}>
+          Назад
+        </button>
       </div>
-      {successMessage && ( // Условный рендеринг сообщения об успехе
+      {successMessage && (
         <div className="success-message">{successMessage}</div>
       )}
     </div>

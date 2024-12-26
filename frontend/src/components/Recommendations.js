@@ -64,7 +64,12 @@ const Recommendations = ({ userId }) => {
             </div>
             <div className="recommendations-item-content">
               <h4 className="recommendations-item-title">
-                <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+                <Link 
+                    to={`/movies/${movie.id}`}
+                    state={{ userId: userId }} // Передаем userId
+                >
+                {movie.title}
+                </Link>
               </h4>
               <p className="recommendations-item-genres">
                 Жанр: {movie.genres && movie.genres.length ? movie.genres.join(", ") : "Не указано"}
