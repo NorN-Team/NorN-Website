@@ -1,6 +1,9 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, Table
 from sqlalchemy.orm import DeclarativeBase, relationship
 from uuid import UUID, uuid4
+import pandas as pd
+from sqlalchemy import create_engine
+from sqlalchemy.orm import Session
 
 class Base(DeclarativeBase):
     pass
@@ -56,6 +59,56 @@ class Rating(Base):
     # Связи с таблицами User и Movie
     user = relationship("User", back_populates="ratings")
     movie = relationship("Movie", back_populates="ratings")
+
+# Функция для загрузки данных из CSV
+def load_movies_from_csv(csv_file: str):
+    # Подключение к базе данных
+    DATABASE_URL = "sqlite:///movies.db"  # Используйте свою строку подключения
+    engine = create_engine(DATABASE_URL)
+
+    # Создание таблиц в базе данных (если их нет)
+    Base.metadata.create_all(bind=engine)
+
+    # Чтение CSV-файла
+    df = pd.read_csv(csv_file)
+
+    # Создание сессии
+    with Session(engine) as session:
+        # Словарь для хранения жанров (чтобы избежать дублирования)
+        genres_dict = {}
+
+        # Обработка каждой строки в CSV
+        for index, row in df.iterrows():
+            # Извлечение данных
+            movie_id = uuid4()  # Генерация UUID для фильма
+            title = row["title"]
+            year = int(title.split("(")[-1].strip(")"))  # Извлечение года из названия
+            genres = row["genres"].split("|")  # Разделение жанров
+
+            # Создание записи фильма
+            movie = Movie(movie_id=movie_id, title=title, year=year)
+            session.add(movie)
+
+            # Обработка жанров
+            for genre_name in genres:
+                # Если жанр уже существует, используем его
+                if genre_name in genres_dict:
+                    genre = genres_dict[genre_name]
+                else:
+                    # Создаем новый жанр
+                    genre = Genre(genre_id=uuid4(), name=genre_name)
+                    session.add(genre)
+                    genres_dict[genre_name] = genre
+
+                # Создаем связь между фильмом и жанром
+                session.execute(movie_genre_association.insert().values(movie_id=movie.movie_id, genre_id=genre.genre_id))
+
+        # Сохранение изменений в базе данных
+        session.commit()
+
+# Пример использования
+if __name__ == "__main__":
+    load_movies_from_csv("movies.csv")
 
 # Пример данных фильмов
 movies = [
