@@ -13,13 +13,13 @@
   
   .movie-header {
     background-color: #d4edda; /* Ярко-зелёный */
-    text-align: center;
+    text-align: left;
     padding: 20px;
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   }
   
   .movie-details {
@@ -109,7 +109,6 @@
   
   .rating-button {
     background-color: white; /* Зеленый цвет сайта */
-    border: 1px solid #ccc;
     margin-top: 10px;
     max-width: 120px;
     padding: 10px 20px; /* Внутренние отступы */
@@ -136,5 +135,28 @@
     border-radius: 8px;
     font-size: 14px;
     text-align: center;
+  }
+  
+  .back-button {
+    background-color: white; /* Зеленый цвет сайта */
+    max-width: 120px;
+    margin-right: 20px;
+    padding: 10px 20px; /* Внутренние отступы */
+    border-radius: 4px; /* Скругленные края */
+    border: 1px solid #4caf50;
+    font-size: 16px; /* Размер текста */
+    cursor: pointer; /* Курсор указывает, что это кнопка */
+    transition: background-color 0.3s ease; /* Анимация при наведении */
+    position: absolute; /* Позиционирование кнопки */
+    right: 20px; /* Отступ от правого края */
+    top: 424px;
+  }
+  
+  .back-button:hover {
+    background-color: #45a049; /* Чуть темнее при наведении */
+  }
+  
+  .back-button:active {
+    background-color: #3e8e41; /* Еще темнее при клике */
   }
   
