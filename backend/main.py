@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from endpoints import movies, movie_page, register, login, ratings
+from endpoints import movies, movie_page, register, login, ratings, recommendations
 from fastapi.middleware.cors import CORSMiddleware
 
 # Создание экземпляра FastAPI
@@ -23,6 +23,7 @@ app.include_router(movie_page.router, tags=["Movies"])
 app.include_router(register.router, prefix="/auth", tags=["Auth"])
 app.include_router(login.router, prefix="/auth", tags=["Auth"])
 app.include_router(ratings.router, prefix="/ratings", tags=["Ratings"])
+app.include_router(recommendations.router, tags=["ML"])
 
 # Пример корневого эндпоинта
 @app.get("/", tags=["Root"])

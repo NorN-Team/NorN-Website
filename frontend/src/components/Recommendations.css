@@ -1,0 +1,82 @@
+/* Контейнер для рекомендаций */
+.recommendations-container {
+    padding: 20px;
+    border-left: 1px solid #ddd;
+}
+
+/* Заголовок */
+.recommendations-title {
+    color: #2f4f2f;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Список рекомендаций */
+.recommendations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Один элемент рекомендации */
+.recommendations-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 15px;
+    border: 1px solid #d4edda;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Постер фильма */
+.recommendations-poster {
+    width: 75px;
+    height: 105px;
+    background-color: #d4edda;
+    border-radius: 4px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #2f4f2f;
+}
+
+/* Контейнер для текста внутри рекомендации */
+.recommendations-item-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Заголовок фильма */
+.recommendations-item-title {
+    margin: 0 0 10px 0;
+    color: #2f4f2f;
+    font-weight: bold;
+}
+
+.recommendations-item-title a {
+    text-decoration: none;
+    color: #2f4f2f;
+}
+
+.recommendations-item-title a:hover {
+    color: #1b3b1b; /* Более тёмный зелёный при наведении */
+    text-decoration: underline;
+}
+
+/* Жанры фильма */
+.recommendations-item-genres {
+    margin: 0;
+    text-align: left;
+    color: #2f4f2f;
+}
+
+/* Сообщение об отсутствии рекомендаций */
+.recommendations-empty {
+    text-align: center;
+    color: #2f4f2f;
+}
