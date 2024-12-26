@@ -21,12 +21,18 @@ class User(Base):
     hashed_password = Column(String(128))
    
 class Movie(Base):
-    __tablename__ = "Movie"
+    __tablename__ = "movie"
 
     movie_id = Column(Uuid, unique=True, primary_key=True)
     title = Column(String(256), unique=True, index=True)
     year = Column(Integer)
 
+class Rating(Base):
+    __tablename__ = "rating"
+    score_id = Column(Uuid, unique=True, primary_key=True)
+    score = Column(Integer)
+    movie_id = Column(Uuid, ForeignKey("movie.movie_id"))
+    user_id = Column(Uuid, ForeignKey("user.user_id"))
 
 # Определение Pydantic-модели для фильма
 class Movie(BaseModel):
