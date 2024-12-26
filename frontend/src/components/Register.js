@@ -8,22 +8,28 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword((prevState) => !prevState);
+  };
 
   const handleRegister = async () => {
-    // Проверка данных перед отправкой
     if (!validateFields()) return;
-
+  
     try {
       const response = await fetch("http://localhost:8000/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username, password }), // Данные отправляются как JSON
       });
-
+  
       if (response.ok) {
-        navigate("/login"); // Перенаправление на главную страницу после регистрации
+        const data = await response.json(); // Получаем данные из ответа сервера
+        const userId = data.user.user_id; // Теперь объект user вложен
+        navigate("/login", { state: { userId } }); // Передаём userId через state маршрутизатора
       } else {
         const errorData = await response.json();
         alert(errorData.detail || "Ошибка регистрации");
@@ -31,7 +37,7 @@ const Register = () => {
     } catch (error) {
       alert("Не удалось подключиться к серверу");
     }
-  };
+  };  
 
   const validateFields = () => {
     let isValid = true;
@@ -69,25 +75,19 @@ const Register = () => {
     }
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword((prevState) => !prevState);
-  };
-
-  const [showPassword, setShowPassword] = useState(false);
-
   return (
     <div className="login-register-container">
       <div className="login-register-box">
         <h2>Регистрация</h2>
         <form onSubmit={(e) => e.preventDefault()}>
-            <input
-              type="text"
-              placeholder="Имя"
-              value={username}
-              onChange={handleUsernameChange}
-              className={usernameError ? "input-error" : ""}
-            />
-            {usernameError && <div className="error-message">{usernameError}</div>}
+          <input
+            type="text"
+            placeholder="Имя"
+            value={username}
+            onChange={handleUsernameChange}
+            className={usernameError ? "input-error" : ""}
+          />
+          {usernameError && <div className="error-message">{usernameError}</div>}
           <div className="password-container">
             <input
               type={showPassword ? "text" : "password"}
