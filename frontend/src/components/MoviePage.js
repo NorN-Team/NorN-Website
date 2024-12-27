@@ -7,7 +7,7 @@ const MoviePage = () => {
   const location = useLocation(); // Получаем location для доступа к state
   const { userId } = location.state || {}; // Извлекаем userId из state
   const navigate = useNavigate();
-  const [movie, setMovie] = useState(null);
+  const [data, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [rating, setRating] = useState(3);
   const [successMessage, setSuccessMessage] = useState("");
@@ -43,7 +43,7 @@ const MoviePage = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          film_id: id,
+          movie_id: data[0],
           user_id: userId, // Используем userId
           rating,
         }),
@@ -61,18 +61,18 @@ const MoviePage = () => {
   };
 
   if (loading) return <p className="loading-message">Загрузка...</p>;
-  if (!movie) return <p className="not-found-message">Фильм не найден</p>;
+  if (!data) return <p className="not-found-message">Фильм не найден</p>;
 
   return (
     <div className="movie-page-container">
-      <div className="movie-header">{movie.title}</div>
+      <div className="movie-header">{data[1]}</div>
       <div className="movie-details">
-        <div className="movie-detail-item">Год выпуска в прокат: {movie.year}</div>
+        <div className="movie-detail-item">Год выпуска в прокат: {data[2]}</div>
         <div className="movie-detail-item movie-genres">
-          Жанры: {movie.genres.join(", ")}
+          Жанры: {data[3]}
         </div>
         <div className="movie-detail-item movie-description">
-          Описание: {movie.description}
+          Описание:
         </div>
       </div>
       <div className="rating-container">

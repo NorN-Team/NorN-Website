@@ -24,7 +24,7 @@ const App = () => {
         </div>
         <div className="results"> {/* Класс для центральной колонки */}
           {/* Передаем результаты поиска в SearchResults */}
-          <SearchResults results={movies}s userId={userId}/>
+          <SearchResults results={movies} userId={userId}/>
         </div>
         <div className="sidebar-right"> {/* Класс для правой колонки */}
           <Recommendations userId={userId} /> {/* Передаем userId в Recommendations */}

@@ -27,7 +27,7 @@ const Login = () => {
 
       if (response.ok) {
         const data = await response.json(); // Получаем данные из ответа сервера
-        const userId = data.user.user_id; // Предполагаем, что сервер возвращает user_id
+        const userId = data.user_id; // Предполагаем, что сервер возвращает user_id
         navigate("/main", { state: { userId } }); // Передаём userId через state маршрутизатора
       } else {
         const errorData = await response.json();

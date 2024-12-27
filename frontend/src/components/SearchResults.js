@@ -8,12 +8,12 @@ const SearchResults = ({ results, userId }) => (
     <div className="search-results-list">
       {results.length > 0 ? (
         results.map((movie) => (
-          <div className="search-results-item" key={movie.id}>
+          <div className="search-results-item" key={movie.movie_id}>
             <div className="search-results-poster">Постер</div>
             <div className="search-results-item-content">
               <h4 className="search-results-item-title">
                 <Link 
-                  to={`/movies/${movie.id}`}
+                  to={`/movies/${movie.movie_id}`}
                   state={{ userId: userId }} // Передаем userId
                 >
                   {movie.title}

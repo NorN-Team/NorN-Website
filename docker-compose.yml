@@ -1,8 +1,39 @@
 version: '3.8'
 services:
+  database:
+    build:
+      context: ./BD
+      dockerfile: Dockerfile
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: mydatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./BD/initdb:/docker-entrypoint-initdb.d
+      - ./BD/database:/docker-entrypoint-database.d
+    restart: always
+
+  backend:
+    build:
+      context: ./backend
+    container_name: backend-service
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - database
+    environment:
+      DATABASE_URL: postgresql://admin:admin@database:5432/mydatabase
+
   frontend:
     build:
       context: ./frontend
+    container_name: frontend-service
     ports:
       - "3000:3000"
     volumes:
@@ -13,12 +44,3 @@ services:
       - BROWSER=none
     depends_on:
       - backend
-
-  backend:
-    build:
-      context: ./backend
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./backend:/app
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload

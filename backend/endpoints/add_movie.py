@@ -12,6 +12,7 @@ class MovieInput(BaseModel):
 
 @router.post("/add-movie")
 async def add_movie(movie_input: MovieInput):
+    print(f"Полученные данные: {movie_input}")
     # Проверка существования фильма
     if any(existing_movie for existing_movie in movies if existing_movie.title.lower() == movie_input.title.lower()):
         raise HTTPException(status_code=400, detail="Фильм с таким названием уже существует")

@@ -1,22 +1,23 @@
-from fastapi import FastAPI, APIRouter, HTTPException
-from models.movie_structure import Movie, movies  # Убедитесь, что структура `movies` существует
+from fastapi import APIRouter, HTTPException
+from settings import get_connection
 
 router = APIRouter()
 
-@router.get("/movie_page/{movie_id}", response_model=Movie)  # Измените маршрут на /movies/{movie_id}
-async def get_movie(movie_id: int):
-    """
-    Эндпоинт для получения информации о фильме по его ID.
-    """
-    # Найти фильм по ID
-    for movie in movies:
-        if movie.id == movie_id:
+@router.get("/")
+def get_movies():
+    query = "SELECT * FROM movies;"
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute(query)
+            return cur.fetchall()
+
+@router.get("/movie_page/{movie_id}")
+def get_movie(movie_id: int):
+    query = "SELECT * FROM movies WHERE movie_id = %(movie_id)s;"
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute(query, {"movie_id": movie_id})
+            movie = cur.fetchone()
+            if not movie:
+                raise HTTPException(status_code=404, detail="Фильм не найден")
             return movie
-
-    # Если фильм не найден, вернуть 404
-    raise HTTPException(status_code=404, detail="Фильм не найден")
-
-app = FastAPI()
-
-# Подключаем маршруты
-app.include_router(router, tags=["Movies"])

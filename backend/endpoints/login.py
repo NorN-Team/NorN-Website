@@ -1,22 +1,23 @@
-from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from models.user import User, users  # Импортируем класс User
+from settings import get_connection1
 
-app = FastAPI()
 router = APIRouter()
 
-# Определяем Pydantic-модель для входных данных
 class LoginData(BaseModel):
     username: str
     password: str
 
 @router.post("/login")
-def register_user(data: LoginData):
-    for user in users:
-        if user.username == data.username and user.password == data.password:
-            return {"message": "Успешный вход", "user": {"user_id": user.user_id}}
-
-    raise HTTPException(status_code=401, detail="Неверное имя пользователя или пароль")
-
-# Подключаем маршруты
-app.include_router(router, tags=["Auth"])
+def login_user(data: LoginData):
+    query = """
+        SELECT user_id FROM users
+        WHERE user_name = %(username)s AND user_password = %(password)s;
+    """
+    with get_connection1() as conn:
+        with conn.cursor() as cur:
+            cur.execute(query, {"username": data.username, "password": data.password})
+            user = cur.fetchone()
+            if not user:
+                raise HTTPException(status_code=401, detail="Неверное имя пользователя или пароль")
+            return {"message": "Успешный вход", "user_id": user["user_id"]}

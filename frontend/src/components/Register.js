@@ -30,7 +30,7 @@ const Register = () => {
   
       if (response.ok) {
         const data = await response.json(); // Получаем данные из ответа сервера
-        const userId = data.user.user_id; // Теперь объект user вложен
+        const userId = data.user_id; // Теперь объект user вложен
         navigate("/login", { state: { userId } }); // Передаём userId через state маршрутизатора
       } else {
         const errorData = await response.json();

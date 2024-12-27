@@ -6,7 +6,7 @@ import "rc-slider/assets/index.css"; // Импорт стилей для rc-slid
 const Filters = ({ setMovies }) => {
   const [titleSubstring, setTitleSubstring] = useState(""); // Подстрока для поиска
   const [genres, setGenres] = useState([]); // Жанры
-  const [yearRange, setYearRange] = useState([1980, 2024]); // Диапазон годов
+  const [yearRange, setYearRange] = useState([1970, 2024]); // Диапазон годов
 
   // Функция для выполнения поиска на сервере
   const handleSearch = async () => {
@@ -20,9 +20,9 @@ const Filters = ({ setMovies }) => {
       if (yearRange[0] !== undefined) params.append("start_year", yearRange[0]);
       if (yearRange[1] !== undefined) params.append("end_year", yearRange[1]);
 
-      console.log(`Запрос: http://127.0.0.1:8000/movies/filter?${params.toString()}`);
+      console.log(`Запрос: http://127.0.0.1:8000/movies/filter?${params}`);
 
-      const response = await fetch(`http://127.0.0.1:8000/movies/filter?${params.toString()}`);
+      const response = await fetch(`http://127.0.0.1:8000/movies/filter?${params}`);
       if (!response.ok) {
         throw new Error("Ошибка запроса к API");
       }
