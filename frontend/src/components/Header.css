@@ -1,0 +1,49 @@
+/* Общий стиль для Header */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 0;
+    background-color: #d4edda;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Стиль для логотипа */
+  header img {
+    width: 120px;
+    height: auto;
+    margin-left: 10px;
+    border-radius: 8px; /* Скругление углов */
+  }
+  
+  /* Контейнер для навигации */
+  header nav {
+    margin-left: auto;
+  }
+  
+  /* Стиль для кнопки "Добавить фильм" */
+  .admin-button {
+    background-color: white; /* Белый фон */
+    color: black;
+    border: 1px solid #4caf50; /* Зеленая рамка */
+    padding: 10px 20px; /* Внутренние отступы */
+    border-radius: 4px; /* Скругленные края */
+    margin-left: auto;
+    font-size: 16px; /* Размер текста */
+    cursor: pointer; /* Курсор указывает, что это кнопка */
+    transition: background-color 0.3s ease; /* Анимация при наведении */
+    position: absolute; /* Позиционирование кнопки */
+    right: 20px; /* Отступ от правого края */
+    top: 22px;
+  }
+  
+  /* Ховер для кнопки */
+  .admin-button:hover {
+    background-color: #45a049; /* Зеленый при наведении */
+  }
+  
+  /* Стили для активной кнопки */
+  .admin-button:active {
+    background-color: #3e8e41; /* Более темный зеленый при клике */
+  }
+  

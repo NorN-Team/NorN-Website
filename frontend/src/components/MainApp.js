@@ -14,7 +14,7 @@ const App = () => {
   return (
     <div className="app-container"> {/* Класс для общего контейнера */}
       <header className="header"> {/* Класс для шапки */}
-        <Header /> {/* Передаем userId в Header */}
+        <Header userId = {userId}/> {/* Передаем userId в Header */}
       </header>
 
       <div className="main-content"> {/* Класс для основного содержимого */}
@@ -24,7 +24,7 @@ const App = () => {
         </div>
         <div className="results"> {/* Класс для центральной колонки */}
           {/* Передаем результаты поиска в SearchResults */}
-          <SearchResults results={movies} userId={userId}/>
+          <SearchResults results={movies}s userId={userId}/>
         </div>
         <div className="sidebar-right"> {/* Класс для правой колонки */}
           <Recommendations userId={userId} /> {/* Передаем userId в Recommendations */}
