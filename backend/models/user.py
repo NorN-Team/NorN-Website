@@ -1,12 +1,10 @@
-from pydantic import BaseModel, Field
+from sqlalchemy import Column, Integer, String, Boolean
+from database import Base
 
-# Класс User для модели данных
-class User(BaseModel):
-    user_id: int
-    username: str = Field(..., min_length=1, description="Имя пользователя должно содержать минимум 1 символ")
-    email: str
-    password: str = Field(..., min_length=8, description="Пароль должен содержать минимум 8 символов")
-    role: str
+class User(Base):
+    __tablename__ = "users"  # Имя таблицы в базе данных
 
-# Временное хранилище пользователей
-users = [User(user_id =1, username = "username", email = "email", password = "password", role = "admin")]
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, index=True)
+    email = Column(String, unique=True, index=True)
+    hashed_password = Column(String)
