@@ -1,11 +1,16 @@
 import pandas as pd
+import os
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 import numpy as np
 import pickle
 
-# Загрузка данных
-ratings = pd.read_csv('./dataset/ratings.csv')
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Указываем пути к файлам относительно этой директории
+RATINGS_PATH = os.path.join(CURRENT_DIR, "ratings.csv")
+
+ratings = pd.read_csv(RATINGS_PATH)
 
 # Создание матрицы рейтингов пользователей для фильмов
 movie_user_matrix = ratings.pivot_table(index='movieId', columns='userId', values='rating').fillna(0)

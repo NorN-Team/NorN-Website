@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException, Query
-from settings import get_connection  # Функция для подключения к базе данных
+from settings import get_connection1  # Функция для подключения к базе данных
 
 router = APIRouter()
 
@@ -16,7 +16,7 @@ async def get_user_role(user_id: int = Query(..., description="ID пользов
         query = "SELECT role FROM users WHERE user_id = %(user_id)s"
         params = {"user_id": user_id}
 
-        with get_connection() as conn:
+        with get_connection1() as conn:
             with conn.cursor() as cur:
                 cur.execute(query, params)
                 result = cur.fetchone()
