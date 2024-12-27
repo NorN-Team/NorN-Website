@@ -117,7 +117,7 @@ def cross_validation(k):
     return avg_mae, avg_rmse
 
 # Пример использования функции
-k = 2  # Замените на нужное количество фолдов
+k = 2
 avg_mae, avg_rmse = cross_validation(k)
 print(f"Average MAE: {avg_mae}, Average RMSE: {avg_rmse}")
 
@@ -128,7 +128,6 @@ movie_user_matrix = ratings.pivot_table(index='movieId', columns='userId', value
 # Расчет косинусовой схожести между фильмами
 cosine_sim = cosine_similarity(movie_user_matrix)
 
-# Преобразование в датафрейм для удобства
 cosine_sim_df = pd.DataFrame(cosine_sim, index=movie_user_matrix.index, columns=movie_user_matrix.index)
 
 # Предварительный расчет схожести всех фильмов
