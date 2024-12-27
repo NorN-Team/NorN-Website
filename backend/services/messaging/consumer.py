@@ -1,5 +1,7 @@
 import pika
 import json
+import asyncio
+from mailer import send_email
 
 RABBITMQ_HOST = "rabbitmq"
 QUEUE_NAME = "email_notifications"
@@ -13,8 +15,13 @@ def process_email(ch, method, properties, body):
     subject = message.get("subject")
     body_content = message.get("body")
 
-    # Здесь реализуйте отправку email
-    print(f"Отправка email:\nКому: {email}\nТема: {subject}\nСообщение: {body_content}")
+    print(f"Получено сообщение: {message}")
+    try:
+        # Запускаем асинхронную задачу для отправки почты
+        asyncio.get_event_loop().create_task(send_email(email))
+        print(f" [x] Отправка email на {email}")
+    except Exception as e:
+        print(f"Ошибка при отправке email: {str(e)}")
 
     # Подтверждаем обработку сообщения
     ch.basic_ack(delivery_tag=method.delivery_tag)
