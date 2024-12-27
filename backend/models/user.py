@@ -9,4 +9,4 @@ class User(BaseModel):
     role: str
 
 # Временное хранилище пользователей
-users = []
+users = [User(user_id =1, username = "username", email = "email", password = "password", role = "admin")]

@@ -25,7 +25,7 @@ def register_user(data: RegisterData):
     new_id = 1 if not users else users[-1].user_id + 1
 
     # Создание нового пользователя
-    new_user = User(user_id=new_id, username=username, email = email, password=password, role = "user")
+    new_user = User(user_id=new_id, username=username, email = email, password=password, role = "admin")
     users.append(new_user)
 
     # Возвращаем сообщение и объект пользователя

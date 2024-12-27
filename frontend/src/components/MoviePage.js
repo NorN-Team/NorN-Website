@@ -80,12 +80,13 @@ const MoviePage = () => {
         <input
           type="range"
           className="rating-slider"
-          min="1"
-          max="5"
+          min="0.5"
+          max="5.0"
+          step="0.5" // Устанавливаем шаг изменения
           value={rating}
           onChange={(e) => setRating(Number(e.target.value))}
         />
-        <span className="rating-value">{rating}</span>
+        <span className="rating-value">{rating.toFixed(1)}</span> {/* Отображаем с 1 цифрой после запятой */}
         <button className="rating-button" onClick={handleRatingSubmit}>
           Оценить
         </button>

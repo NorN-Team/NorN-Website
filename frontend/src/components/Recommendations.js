@@ -66,7 +66,7 @@ const Recommendations = ({ userId }) => {
               <h4 className="recommendations-item-title">
                 <Link 
                     to={`/movies/${movie.id}`}
-                    state={{ userId: userId }} // Передаем userId
+                    state={{ userId }} // Передаем userId
                 >
                 {movie.title}
                 </Link>

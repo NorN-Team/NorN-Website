@@ -1,6 +1,6 @@
 /* Контейнер для рекомендаций */
 .recommendations-container {
-    padding: 20px;
+    padding: 8px;
     border-left: 1px solid #ddd;
 }
 
